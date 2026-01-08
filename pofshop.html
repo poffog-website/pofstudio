@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="POFSHOP - ร้านค้าสินค้าน่ารัก แก้ว MUG เสื้อยืด โดย POFSTUDIO">
+    <title>POFSHOP | Shop - POFSTUDIO</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pofproduct.css">
+    <link rel="stylesheet" href="chat.css">
+    <style>
+        /* POFSHOP Specific Styles */
+        .product-shop .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url('images/kids-shopping.png');
+            background-size: cover;
+            opacity: 0.15;
+            border-radius: 0 0 100% 0;
+        }
+
+        .product-shop::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            height: 280px;
+            background-image: url('images/kids-shopping.png');
+            background-size: cover;
+            opacity: 0.12;
+            border-radius: 100% 0 0 0;
+            transform: scaleX(-1);
+        }
+
+        .products-section {
+            padding: var(--spacing-2xl) 0;
+            background: var(--color-bg-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-text-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .product-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition-normal);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #E8E5D5, var(--color-beige));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image .placeholder-emoji {
+            font-size: 5rem;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #B5A55A;
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: var(--spacing-md);
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .product-desc {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .product-price {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: #B5A55A;
+            font-weight: 700;
+        }
+
+        .product-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--color-text-light);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-bg-secondary);
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            background: #B5A55A;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active">POFPRODUCT <span
+                            class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pofimage.html">🖼️ POFIMAGE</a></li>
+                        <li><a href="pofanimation.html">🎬 POFANIMATION</a></li>
+                        <li><a href="pofsong.html">🎵 POFSONG</a></li>
+                        <li><a href="poffriend.html">👫 POFFRIEND</a></li>
+                        <li><a href="pofshop.html">🛒 POFSHOP</a></li>
+                        <li><a href="pofmore.html">✨ POFMORE</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#about" class="nav-link">เกี่ยวกับ</a></li>
+                <li><a href="index.html#contact" class="nav-link">ติดต่อ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero product-shop">
+        <div class="hero-bg-image"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🛒 Shop</div>
+            <h1 class="hero-title">
+                <span class="title-main">POF</span><span class="title-accent">SHOP</span>
+            </h1>
+            <p class="hero-subtitle">ร้านค้าสินค้าน่ารัก</p>
+            <p class="hero-description">
+                สินค้าลิขสิทธิ์ POFSTUDIO แก้ว MUG เสื้อยืด และของที่ระลึกน่ารักมากมาย
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">🛍️ สินค้าของเรา</h2>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active">ทั้งหมด</button>
+                <button class="category-tab">☕ แก้ว MUG</button>
+                <button class="category-tab">👕 เสื้อยืด</button>
+                <button class="category-tab">🎁 อื่นๆ</button>
+            </div>
+
+            <div class="products-grid">
+                <!-- MUG 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">☕</span>
+                        <span class="product-badge">ยอดนิยม</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">แก้ว MUG ลายน้องหมี</h3>
+                        <p class="product-desc">แก้วเซรามิกพร้อมลายน่ารัก ขนาด 350ml</p>
+                        <div class="product-price">฿250 <span>บาท</span></div>
+                    </div>
+                </div>
+
+                <!-- MUG 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">🍵</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">แก้ว MUG ลายดอกไม้</h3>
+                        <p class="product-desc">แก้วเซรามิกสีพาสเทลสวยงาม ขนาด 400ml</p>
+                        <div class="product-price">฿280 <span>บาท</span></div>
+                    </div>
+                </div>
+
+                <!-- T-Shirt 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">👕</span>
+                        <span class="product-badge">ใหม่</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">เสื้อยืด POF สีขาว</h3>
+                        <p class="product-desc">เสื้อยืดคอตตอน 100% พิมพ์ลาย POFSTUDIO</p>
+                        <div class="product-price">฿350 <span>บาท</span></div>
+                    </div>
+                </div>
+
+                <!-- T-Shirt 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">👚</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">เสื้อยืด POF สีเบจ</h3>
+                        <p class="product-desc">เสื้อยืดคอตตอน สีโทนอบอุ่น Oversize</p>
+                        <div class="product-price">฿380 <span>บาท</span></div>
+                    </div>
+                </div>
+
+                <!-- Sticker -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">🏷️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">สติกเกอร์ Set น่ารัก</h3>
+                        <p class="product-desc">สติกเกอร์กันน้ำ 10 ชิ้น ลายสุดน่ารัก</p>
+                        <div class="product-price">฿59 <span>บาท</span></div>
+                    </div>
+                </div>
+
+                <!-- Tote Bag -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="placeholder-emoji">👜</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">กระเป๋าผ้า Tote Bag</h3>
+                        <p class="product-desc">กระเป๋าผ้าแคนวาส พิมพ์ลายสุดพิเศษ</p>
+                        <div class="product-price">฿199 <span>บาท</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Info -->
+    <section class="product-content">
+        <div class="container">
+            <div class="under-construction">
+                <h3>📦 วิธีสั่งซื้อ</h3>
+                <p>สั่งซื้อสินค้าได้ที่ Line: @pofstudio<br>หรือติดต่อทาง Facebook: POFSTUDIO</p>
+                <a href="index.html#contact" class="back-btn">📬 ติดต่อสั่งซื้อ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+                </div>
+                <p class="footer-text">สร้างสรรค์ผลงานน่ารักสำหรับเด็กๆ</p>
+                <p class="footer-copyright">© 2026 POFSTUDIO. All rights reserved.</p>
+                <a href="login.html" class="footer-admin-link">
+                    <span>🔐</span>
+                    <span>Admin</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Chat">💬</button>
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <div class="chat-avatar">😊</div>
+            <div class="chat-info">
+                <h3>POF Assistant</h3>
+                <p>พร้อมช่วยเหลือคุณค่ะ</p>
+            </div>
+            <button id="chatClose" class="chat-close">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm" class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="พิมพ์ข้อความ..." autocomplete="off">
+            <button type="submit" class="chat-send">➤</button>
+        </form>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+
+</html>

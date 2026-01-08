@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="POFFRIEND - คอร์สเรียนสำหรับเด็กและวัยรุ่น คณิตศาสตร์ คอมพิวเตอร์ AI โดย POFSTUDIO">
+    <title>POFFRIEND | Learning Courses - POFSTUDIO</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pofproduct.css">
+    <link rel="stylesheet" href="chat.css">
+    <style>
+        /* POFFRIEND Specific Styles */
+        .product-friend .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url('images/kids-learning.png');
+            background-size: cover;
+            opacity: 0.15;
+            border-radius: 0 0 100% 0;
+        }
+
+        .product-friend::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            height: 280px;
+            background-image: url('images/kids-learning.png');
+            background-size: cover;
+            opacity: 0.12;
+            border-radius: 100% 0 0 0;
+            transform: scaleX(-1);
+        }
+
+        .courses-section {
+            padding: var(--spacing-2xl) 0;
+            background: var(--color-bg-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-text-primary);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .course-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: var(--transition-normal);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .course-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .course-desc {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .course-level {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #5FA5A5;
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .course-topics {
+            list-style: none;
+        }
+
+        .course-topics li {
+            padding: 4px 0;
+            color: var(--color-text-light);
+        }
+
+        .course-topics li::before {
+            content: '✓ ';
+            color: #5FA5A5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active">POFPRODUCT <span
+                            class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pofimage.html">🖼️ POFIMAGE</a></li>
+                        <li><a href="pofanimation.html">🎬 POFANIMATION</a></li>
+                        <li><a href="pofsong.html">🎵 POFSONG</a></li>
+                        <li><a href="poffriend.html">👫 POFFRIEND</a></li>
+                        <li><a href="pofshop.html">🛒 POFSHOP</a></li>
+                        <li><a href="pofmore.html">✨ POFMORE</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#about" class="nav-link">เกี่ยวกับ</a></li>
+                <li><a href="index.html#contact" class="nav-link">ติดต่อ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero product-friend">
+        <div class="hero-bg-image"></div>
+        <div class="hero-content">
+            <div class="hero-badge">👫 Learning Courses</div>
+            <h1 class="hero-title">
+                <span class="title-main">POF</span><span class="title-accent">FRIEND</span>
+            </h1>
+            <p class="hero-subtitle">คอร์สเรียนสำหรับเด็กและวัยรุ่น</p>
+            <p class="hero-description">
+                เรียนรู้คณิตศาสตร์ คอมพิวเตอร์ และ AI ได้อย่างสนุกสนานพร้อมเพื่อนๆ
+            </p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="section-title">📚 หลักสูตรของเรา</h2>
+            <div class="courses-grid">
+                <!-- Math Course -->
+                <div class="course-card">
+                    <div class="course-icon">🧮</div>
+                    <span class="course-level">เด็ก - วัยรุ่น</span>
+                    <h3 class="course-title">คณิตศาสตร์สนุก</h3>
+                    <p class="course-desc">เรียนคณิตศาสตร์แบบง่ายๆ เข้าใจได้ทุกวัย ตั้งแต่พื้นฐานจนถึงระดับสูง</p>
+                    <ul class="course-topics">
+                        <li>บวก ลบ คูณ หาร</li>
+                        <li>เศษส่วนและทศนิยม</li>
+                        <li>พีชคณิตเบื้องต้น</li>
+                        <li>เรขาคณิต</li>
+                    </ul>
+                </div>
+
+                <!-- Computer Course -->
+                <div class="course-card">
+                    <div class="course-icon">💻</div>
+                    <span class="course-level">เด็ก - วัยรุ่น</span>
+                    <h3 class="course-title">คอมพิวเตอร์พื้นฐาน</h3>
+                    <p class="course-desc">เรียนรู้การใช้คอมพิวเตอร์และทักษะดิจิทัลที่จำเป็น</p>
+                    <ul class="course-topics">
+                        <li>การใช้งานคอมพิวเตอร์</li>
+                        <li>Microsoft Office</li>
+                        <li>Internet และ Social Media</li>
+                        <li>ความปลอดภัยออนไลน์</li>
+                    </ul>
+                </div>
+
+                <!-- AI Course -->
+                <div class="course-card">
+                    <div class="course-icon">🤖</div>
+                    <span class="course-level">วัยรุ่น - ผู้ใหญ่</span>
+                    <h3 class="course-title">AI และ Programming</h3>
+                    <p class="course-desc">เริ่มต้นเรียนรู้ AI และการเขียนโปรแกรมอย่างง่าย</p>
+                    <ul class="course-topics">
+                        <li>AI คืออะไร</li>
+                        <li>การใช้ ChatGPT, Gemini</li>
+                        <li>Python เบื้องต้น</li>
+                        <li>สร้าง Chatbot ง่ายๆ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="product-content">
+        <div class="container">
+            <div class="under-construction">
+                <img src="images/under-construction.png" alt="Coming Soon" class="construction-img">
+                <h3>🚧 เปิดรับสมัครเร็วๆ นี้</h3>
+                <p>คอร์สเรียนกำลังอยู่ระหว่างการจัดเตรียม<br>ติดตามข่าวสารได้ที่หน้าหลักนะคะ! 💕</p>
+                <a href="index.html#contact" class="back-btn">📬 ติดต่อสอบถาม</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+                </div>
+                <p class="footer-text">สร้างสรรค์ผลงานน่ารักสำหรับเด็กๆ</p>
+                <p class="footer-copyright">© 2026 POFSTUDIO. All rights reserved.</p>
+                <a href="login.html" class="footer-admin-link">
+                    <span>🔐</span>
+                    <span>Admin</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Chat">💬</button>
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <div class="chat-avatar">😊</div>
+            <div class="chat-info">
+                <h3>POF Assistant</h3>
+                <p>พร้อมช่วยเหลือคุณค่ะ</p>
+            </div>
+            <button id="chatClose" class="chat-close">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm" class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="พิมพ์ข้อความ..." autocomplete="off">
+            <button type="submit" class="chat-send">➤</button>
+        </form>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+
+</html>

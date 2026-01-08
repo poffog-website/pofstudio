@@ -315,6 +315,108 @@ app.delete('/api/videos/:filename', (req, res) => {
     }
 });
 
+// ========================================
+// POFSONG - Audio/Music API
+// ========================================
+
+const POFSONG_PATH = path.join(__dirname, 'pofsong');
+
+// Ensure pofsong folder exists
+if (!fs.existsSync(POFSONG_PATH)) {
+    fs.mkdirSync(POFSONG_PATH, { recursive: true });
+}
+
+// Configure multer for audio upload
+const audioStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, POFSONG_PATH);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, 'song-' + uniqueSuffix + ext);
+    }
+});
+
+const audioUpload = multer({
+    storage: audioStorage,
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = /mp3|wav|mpeg|audio/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = /audio/.test(file.mimetype);
+
+        if (extname || mimetype) {
+            return cb(null, true);
+        }
+        cb(new Error('Only audio files are allowed!'));
+    },
+    limits: {
+        fileSize: 50 * 1024 * 1024 // 50MB limit
+    }
+});
+
+// Get all songs
+app.get('/api/songs', (req, res) => {
+    try {
+        const songs = fs.readdirSync(POFSONG_PATH)
+            .filter(file => /\.(mp3|wav|mpeg)$/i.test(file))
+            .map(file => {
+                const stats = fs.statSync(path.join(POFSONG_PATH, file));
+                return {
+                    filename: file,
+                    title: file.replace(/^song-\d+-\d+/, '').replace(/\.[^.]+$/, '') || file,
+                    url: `/pofsong/${file}`,
+                    size: stats.size,
+                    created: stats.birthtime
+                };
+            });
+
+        res.json({ success: true, songs });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Upload song
+app.post('/api/songs/upload', audioUpload.single('audio'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, error: 'No audio uploaded' });
+        }
+
+        const title = req.body.title || req.file.filename;
+
+        res.json({
+            success: true,
+            message: 'Song uploaded successfully',
+            song: {
+                filename: req.file.filename,
+                title: title,
+                url: `/pofsong/${req.file.filename}`
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Delete song
+app.delete('/api/songs/:filename', (req, res) => {
+    try {
+        const { filename } = req.params;
+        const filePath = path.join(POFSONG_PATH, filename);
+
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({ success: false, error: 'Song not found' });
+        }
+
+        fs.unlinkSync(filePath);
+        res.json({ success: true, message: 'Song deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`
@@ -327,15 +429,19 @@ app.listen(PORT, () => {
 ║  Image API:                            ║
 ║  GET  /api/categories                  ║
 ║  GET  /api/images/:category            ║
-║  GET  /api/images                      ║
 ║  POST /api/upload                      ║
-║  POST /api/categories                  ║
 ║  DELETE /api/images/:cat/:filename     ║
 ║                                        ║
 ║  Video API:                            ║
 ║  GET  /api/videos                      ║
 ║  POST /api/videos/upload               ║
 ║  DELETE /api/videos/:filename          ║
+║                                        ║
+║  Song API:                             ║
+║  GET  /api/songs                       ║
+║  POST /api/songs/upload                ║
+║  DELETE /api/songs/:filename           ║
 ╚════════════════════════════════════════╝
     `);
 });
+

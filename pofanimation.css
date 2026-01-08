@@ -236,6 +236,11 @@
     color: var(--color-dusty-rose);
 }
 
+.upload-status.info {
+    background: rgba(196, 164, 132, 0.2);
+    color: var(--color-terracotta);
+}
+
 /* Video Player Section */
 .video-player-section {
     padding: var(--spacing-xl) 0;

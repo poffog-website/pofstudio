@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="POFMORE - บริการ Programming และ AI Chatbot โดย POFSTUDIO">
+    <title>POFMORE | AI & Programming Services - POFSTUDIO</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pofproduct.css">
+    <link rel="stylesheet" href="chat.css">
+    <style>
+        /* POFMORE Specific Styles */
+        .product-more .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url('images/kids-coding.png');
+            background-size: cover;
+            opacity: 0.15;
+            border-radius: 0 0 100% 0;
+        }
+
+        .product-more::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            height: 280px;
+            background-image: url('images/kids-coding.png');
+            background-size: cover;
+            opacity: 0.12;
+            border-radius: 100% 0 0 0;
+            transform: scaleX(-1);
+        }
+
+        .services-section {
+            padding: var(--spacing-2xl) 0;
+            background: var(--color-bg-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .service-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: var(--transition-normal);
+            border-left: 4px solid #8B5E9B;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .service-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-desc {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .service-features li {
+            padding: 6px 0;
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-features li::before {
+            content: '✨';
+        }
+
+        .service-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #8B5E9B;
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .testimonials {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, #E5D5E8, var(--color-bg-secondary));
+        }
+
+        .testimonial-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #8B5E9B;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active">POFPRODUCT <span
+                            class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pofimage.html">🖼️ POFIMAGE</a></li>
+                        <li><a href="pofanimation.html">🎬 POFANIMATION</a></li>
+                        <li><a href="pofsong.html">🎵 POFSONG</a></li>
+                        <li><a href="poffriend.html">👫 POFFRIEND</a></li>
+                        <li><a href="pofshop.html">🛒 POFSHOP</a></li>
+                        <li><a href="pofmore.html">✨ POFMORE</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#about" class="nav-link">เกี่ยวกับ</a></li>
+                <li><a href="index.html#contact" class="nav-link">ติดต่อ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero product-more">
+        <div class="hero-bg-image"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ AI & Programming</div>
+            <h1 class="hero-title">
+                <span class="title-main">POF</span><span class="title-accent">MORE</span>
+            </h1>
+            <p class="hero-subtitle">บริการ Programming และ AI</p>
+            <p class="hero-description">
+                สร้าง Chatbot และโปรแกรมอัจฉริยะเพื่อช่วยจัดการงานประจำวันของคุณ
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">🤖 บริการของเรา</h2>
+            <p class="section-subtitle">พัฒนา Chatbot และระบบอัตโนมัติด้วย AI เพื่อช่วยให้ชีวิตประจำวันง่ายขึ้น</p>
+
+            <div class="services-grid">
+                <!-- Chatbot Schedule -->
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <h3 class="service-title">Chatbot บันทึกตารางงาน</h3>
+                    <p class="service-desc">Chatbot LINE/Telegram สำหรับบันทึกและเตือนตารางการทำงานประจำวัน</p>
+                    <ul class="service-features">
+                        <li>บันทึก To-Do List ผ่านแชท</li>
+                        <li>แจ้งเตือนอัตโนมัติตามเวลา</li>
+                        <li>ดูสรุปงานประจำวัน/สัปดาห์</li>
+                        <li>ซิงค์กับ Google Calendar</li>
+                    </ul>
+                    <div>
+                        <span class="service-tag">LINE Bot</span>
+                        <span class="service-tag">Telegram</span>
+                        <span class="service-tag">AI</span>
+                    </div>
+                </div>
+
+                <!-- Chatbot Finance -->
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3 class="service-title">Chatbot บันทึกรายรับ-รายจ่าย</h3>
+                    <p class="service-desc">Chatbot สำหรับบันทึกรายรับ-รายจ่ายลง Google Sheet อัตโนมัติ</p>
+                    <ul class="service-features">
+                        <li>พิมพ์บอกก็บันทึกได้เลย</li>
+                        <li>บันทึกลง Google Sheet</li>
+                        <li>สรุปรายรับ-รายจ่ายรายเดือน</li>
+                        <li>แจ้งเตือนเมื่อใช้จ่ายเกินงบ</li>
+                    </ul>
+                    <div>
+                        <span class="service-tag">Google Sheet</span>
+                        <span class="service-tag">LINE Bot</span>
+                    </div>
+                </div>
+
+                <!-- Custom Chatbot -->
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">Custom Chatbot</h3>
+                    <p class="service-desc">สร้าง Chatbot ตามความต้องการเฉพาะของคุณ</p>
+                    <ul class="service-features">
+                        <li>Chatbot ตอบคำถามอัตโนมัติ</li>
+                        <li>ระบบจองคิว/นัดหมาย</li>
+                        <li>รับ Order สินค้าผ่านแชท</li>
+                        <li>เชื่อมต่อกับระบบอื่นๆ</li>
+                    </ul>
+                    <div>
+                        <span class="service-tag">Custom</span>
+                        <span class="service-tag">API</span>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">พัฒนาเว็บไซต์</h3>
+                    <p class="service-desc">รับพัฒนาเว็บไซต์สวยๆ ใช้งานง่าย ด้วยเทคโนโลยีทันสมัย</p>
+                    <ul class="service-features">
+                        <li>Landing Page</li>
+                        <li>E-Commerce ร้านค้าออนไลน์</li>
+                        <li>Portfolio Website</li>
+                        <li>Dashboard & Admin Panel</li>
+                    </ul>
+                    <div>
+                        <span class="service-tag">HTML/CSS</span>
+                        <span class="service-tag">React</span>
+                        <span class="service-tag">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Chatbot บันทึกรายจ่ายช่วยให้ผมจัดการการเงินได้ง่ายมากขึ้น
+                    แค่พิมพ์บอกก็บันทึกให้อัตโนมัติ สะดวกมากครับ!"</p>
+                <p class="testimonial-author">— คุณวิชัย, ลูกค้าประจำ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="product-content">
+        <div class="container">
+            <div class="under-construction">
+                <h3>💬 สนใจบริการของเรา?</h3>
+                <p>ติดต่อสอบถามรายละเอียดและขอใบเสนอราคา<br>ปรึกษาฟรี! ไม่มีค่าใช้จ่าย</p>
+                <a href="index.html#contact" class="back-btn">📬 ติดต่อเรา</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+                </div>
+                <p class="footer-text">สร้างสรรค์ผลงานน่ารักสำหรับเด็กๆ</p>
+                <p class="footer-copyright">© 2026 POFSTUDIO. All rights reserved.</p>
+                <a href="login.html" class="footer-admin-link">
+                    <span>🔐</span>
+                    <span>Admin</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Chat">💬</button>
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <div class="chat-avatar">😊</div>
+            <div class="chat-info">
+                <h3>POF Assistant</h3>
+                <p>พร้อมช่วยเหลือคุณค่ะ</p>
+            </div>
+            <button id="chatClose" class="chat-close">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm" class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="พิมพ์ข้อความ..." autocomplete="off">
+            <button type="submit" class="chat-send">➤</button>
+        </form>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+
+</html>

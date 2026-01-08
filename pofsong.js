@@ -1,20 +1,18 @@
 /* ========================================
-   POFANIMATION - JavaScript
+   POFSONG - JavaScript
    ======================================== */
 
 const API_BASE = 'http://localhost:3000';
 
-// State
-let videos = [];
+let songs = [];
 let isLoggedIn = false;
-let currentVideo = null;
+let currentSong = null;
 
 // DOM Elements
-const videoGrid = document.getElementById('videoGrid');
-const mainVideo = document.getElementById('mainVideo');
-const videoPlaceholder = document.getElementById('videoPlaceholder');
-const currentVideoTitle = document.getElementById('currentVideoTitle');
-const currentVideoDesc = document.getElementById('currentVideoDesc');
+const songList = document.getElementById('songList');
+const audioPlayer = document.getElementById('audioPlayer');
+const currentSongTitle = document.getElementById('currentSongTitle');
+const currentSongArtist = document.getElementById('currentSongArtist');
 const adminPanel = document.getElementById('adminPanel');
 const adminToggle = document.getElementById('adminToggle');
 const closeAdmin = document.getElementById('closeAdmin');
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAdminPanel();
     initUploadForm();
     initLogout();
-    loadVideos();
+    loadSongs();
 });
 
 // Check Login Status
@@ -76,31 +74,31 @@ function initAdminPanel() {
     }
 }
 
-// Upload Form Handler
+// Upload Form
 function initUploadForm() {
     if (!uploadForm) return;
 
     uploadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const fileInput = document.getElementById('videoFile');
-        const titleInput = document.getElementById('videoTitle');
+        const fileInput = document.getElementById('audioFile');
+        const titleInput = document.getElementById('songTitle');
         const file = fileInput.files[0];
         const title = titleInput.value.trim();
 
         if (!file || !title) {
-            showUploadStatus('กรุณาเลือกไฟล์และใส่ชื่อวิดีโอ', 'error');
+            showUploadStatus('กรุณาเลือกไฟล์และใส่ชื่อเพลง', 'error');
             return;
         }
 
         const formData = new FormData();
-        formData.append('video', file);
+        formData.append('audio', file);
         formData.append('title', title);
 
         try {
             showUploadStatus('กำลังอัพโหลด...', 'info');
 
-            const response = await fetch(`${API_BASE}/api/videos/upload`, {
+            const response = await fetch(`${API_BASE}/api/songs/upload`, {
                 method: 'POST',
                 body: formData
             });
@@ -110,7 +108,7 @@ function initUploadForm() {
             if (data.success) {
                 showUploadStatus('อัพโหลดสำเร็จ! 🎉', 'success');
                 uploadForm.reset();
-                loadVideos();
+                loadSongs();
             } else {
                 showUploadStatus(data.error || 'เกิดข้อผิดพลาด', 'error');
             }
@@ -123,10 +121,8 @@ function initUploadForm() {
 
 function showUploadStatus(message, type) {
     if (!uploadStatus) return;
-
     uploadStatus.textContent = message;
-    uploadStatus.className = 'upload-status';
-    uploadStatus.classList.add(type);
+    uploadStatus.className = 'upload-status ' + type;
     uploadStatus.style.display = 'block';
 
     if (type === 'success') {
@@ -136,86 +132,81 @@ function showUploadStatus(message, type) {
     }
 }
 
-// Load Videos
-async function loadVideos() {
+// Load Songs
+async function loadSongs() {
     try {
-        const response = await fetch(`${API_BASE}/api/videos`);
+        const response = await fetch(`${API_BASE}/api/songs`);
         const data = await response.json();
 
-        if (data.success && data.videos.length > 0) {
-            videos = data.videos;
-            renderVideoGrid();
+        if (data.success && data.songs.length > 0) {
+            songs = data.songs;
+            renderSongList();
             underConstruction.classList.add('hidden');
+            songList.style.display = 'flex';
         } else {
             showUnderConstruction();
         }
     } catch (error) {
-        console.error('Error loading videos:', error);
+        console.error('Error loading songs:', error);
         showUnderConstruction();
     }
 }
 
 function showUnderConstruction() {
-    videoGrid.innerHTML = '';
+    songList.style.display = 'none';
     underConstruction.classList.remove('hidden');
 }
 
-// Render Video Grid
-function renderVideoGrid() {
-    videoGrid.innerHTML = videos.map((video, index) => `
-        <div class="video-card" data-index="${index}" onclick="playVideo(${index})">
-            <div class="video-thumbnail">
-                <img src="${video.thumbnail || 'images/kids-animation.png'}" alt="${video.title}">
-                <div class="thumbnail-overlay">
-                    <div class="thumbnail-play">▶</div>
-                </div>
-                ${isLoggedIn ? `<button class="video-delete" onclick="event.stopPropagation(); deleteVideo('${video.filename}')" title="ลบวิดีโอ">🗑️</button>` : ''}
+// Render Song List
+function renderSongList() {
+    songList.innerHTML = songs.map((song, index) => `
+        <div class="song-item" data-index="${index}" onclick="playSong(${index})">
+            <div class="song-icon">🎵</div>
+            <div class="song-info">
+                <div class="song-title">${song.title}</div>
+                <div class="song-artist">POFSTUDIO</div>
             </div>
-            <div class="video-card-info">
-                <h3 class="video-card-title">${video.title}</h3>
-                <p class="video-card-meta">🎬 ${video.filename}</p>
-            </div>
+            ${isLoggedIn ? `<button class="song-delete" onclick="event.stopPropagation(); deleteSong('${song.filename}')" title="ลบเพลง">🗑️</button>` : ''}
         </div>
     `).join('');
 }
 
-// Play Video
-function playVideo(index) {
-    const video = videos[index];
-    if (!video) return;
+// Play Song
+function playSong(index) {
+    const song = songs[index];
+    if (!song) return;
 
-    currentVideo = video;
-    mainVideo.src = video.url;
-    mainVideo.classList.add('playing');
-    videoPlaceholder.classList.add('hidden');
-    currentVideoTitle.textContent = video.title;
-    currentVideoDesc.textContent = `🎬 ${video.filename}`;
-
-    mainVideo.play();
-
-    // Scroll to player
-    document.querySelector('.video-player-section').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+    // Remove playing class from all items
+    document.querySelectorAll('.song-item').forEach(item => {
+        item.classList.remove('playing');
     });
+
+    // Add playing class to current item
+    document.querySelector(`[data-index="${index}"]`).classList.add('playing');
+
+    currentSong = song;
+    audioPlayer.src = song.url;
+    currentSongTitle.textContent = song.title;
+    currentSongArtist.textContent = 'POFSTUDIO';
+    audioPlayer.play();
 }
 
-// Delete Video
-async function deleteVideo(filename) {
-    if (!confirm('ต้องการลบวิดีโอนี้หรือไม่?')) return;
+// Delete Song
+async function deleteSong(filename) {
+    if (!confirm('ต้องการลบเพลงนี้หรือไม่?')) return;
 
     try {
-        const response = await fetch(`${API_BASE}/api/videos/${filename}`, {
+        const response = await fetch(`${API_BASE}/api/songs/${filename}`, {
             method: 'DELETE'
         });
 
         const data = await response.json();
 
         if (data.success) {
-            alert('ลบวิดีโอสำเร็จ!');
-            loadVideos();
+            alert('ลบเพลงสำเร็จ!');
+            loadSongs();
         } else {
-            alert(data.error || 'ไม่สามารถลบวิดีโอได้');
+            alert(data.error || 'ไม่สามารถลบเพลงได้');
         }
     } catch (error) {
         console.error('Delete error:', error);

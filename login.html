@@ -264,9 +264,29 @@
         const VALID_USER = 'pof';
         const VALID_PASS = 'pass';
 
+        // Get redirect URL from URL parameter or referrer
+        function getRedirectUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirect = urlParams.get('redirect');
+
+            if (redirect) {
+                return redirect;
+            }
+
+            // Use referrer if available
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                return document.referrer;
+            }
+
+            // Default to index.html
+            return 'index.html';
+        }
+
+        const redirectUrl = getRedirectUrl();
+
         // Check if already logged in
         if (sessionStorage.getItem('pofstudio_admin') === 'true') {
-            window.location.href = 'pofimage.html';
+            window.location.href = redirectUrl;
         }
 
         // Login form handler
@@ -280,7 +300,7 @@
             if (username === VALID_USER && password === VALID_PASS) {
                 // Login successful
                 sessionStorage.setItem('pofstudio_admin', 'true');
-                window.location.href = 'pofimage.html';
+                window.location.href = redirectUrl;
             } else {
                 // Login failed
                 errorDiv.classList.add('show');
