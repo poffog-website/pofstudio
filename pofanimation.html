@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="POFIMAGE - แกลเลอรีภาพประกอบน่ารัก โดย POFSTUDIO">
-    <title>POFIMAGE | Image Gallery - POFSTUDIO</title>
+    <meta name="description" content="POFANIMATION - แกลเลอรีวิดีโอแอนิเมชั่นน่ารัก โดย POFSTUDIO">
+    <title>POFANIMATION | Video Gallery - POFSTUDIO</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pofimage.css">
+    <link rel="stylesheet" href="pofanimation.css">
     <link rel="stylesheet" href="chat.css">
 </head>
 
@@ -32,8 +32,8 @@
             </button>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
-                <li><a href="pofimage.html" class="nav-link active">POFIMAGE</a></li>
-                <li><a href="pofanimation.html" class="nav-link">POFANIMATION</a></li>
+                <li><a href="pofimage.html" class="nav-link">POFIMAGE</a></li>
+                <li><a href="pofanimation.html" class="nav-link active">POFANIMATION</a></li>
                 <li><a href="index.html#about" class="nav-link">เกี่ยวกับ</a></li>
                 <li><a href="index.html#contact" class="nav-link">ติดต่อ</a></li>
             </ul>
@@ -41,19 +41,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="gallery-hero">
+    <section class="video-hero">
         <div class="hero-bg-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge">🖼️ Image Gallery</div>
+            <div class="hero-badge">🎬 Video Gallery</div>
             <h1 class="hero-title">
-                <span class="title-main">POF</span><span class="title-accent">IMAGE</span>
+                <span class="title-main">POF</span><span class="title-accent">ANIMATION</span>
             </h1>
-            <p class="hero-subtitle">แกลเลอรีภาพประกอบน่ารัก</p>
+            <p class="hero-subtitle">แกลเลอรีวิดีโอแอนิเมชั่นน่ารัก</p>
             <p class="hero-description">
-                รวมผลงานภาพประกอบ กราฟิก และงานออกแบบสำหรับเด็ก
+                รวมผลงานวิดีโอแอนิเมชั่น โมชั่นกราฟิก และสื่อการเรียนรู้สำหรับเด็ก
             </p>
         </div>
     </section>
@@ -63,7 +63,7 @@
         <!-- Admin Button (shows when logged in) -->
         <button id="adminToggle" class="admin-toggle-btn hidden">
             <span>⚙️</span>
-            <span>จัดการภาพ</span>
+            <span>อัพโหลดวิดีโอ</span>
         </button>
 
         <!-- Logout Button (shows when logged in) -->
@@ -77,45 +77,26 @@
     <section id="adminPanel" class="admin-panel hidden">
         <div class="container">
             <div class="admin-header">
-                <h2>🔧 จัดการภาพ</h2>
+                <h2>🎬 อัพโหลดวิดีโอ</h2>
                 <button id="closeAdmin" class="close-admin-btn">✕</button>
             </div>
 
             <div class="admin-content">
                 <!-- Upload Form -->
                 <div class="upload-section">
-                    <h3>📤 อัพโหลดภาพใหม่</h3>
+                    <h3>📤 อัพโหลดวิดีโอใหม่</h3>
                     <form id="uploadForm" class="upload-form">
                         <div class="form-group">
-                            <label for="imageFile">เลือกภาพ</label>
-                            <input type="file" id="imageFile" name="image" accept="image/*" required>
-                            <div class="file-preview" id="filePreview"></div>
+                            <label for="videoFile">เลือกไฟล์วิดีโอ (MP4, WebM)</label>
+                            <input type="file" id="videoFile" name="video" accept="video/mp4,video/webm" required>
                         </div>
                         <div class="form-group">
-                            <label for="categorySelect">หมวดหมู่</label>
-                            <select id="categorySelect" name="category" required>
-                                <option value="">-- เลือกหมวดหมู่ --</option>
-                            </select>
+                            <label for="videoTitle">ชื่อวิดีโอ</label>
+                            <input type="text" id="videoTitle" name="title" placeholder="ใส่ชื่อวิดีโอ" required>
                         </div>
                         <button type="submit" class="upload-btn">
                             <span>📤</span>
                             <span>อัพโหลด</span>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Create Category -->
-                <div class="category-section">
-                    <h3>📁 สร้างหมวดหมู่ใหม่</h3>
-                    <form id="categoryForm" class="category-form">
-                        <div class="form-group">
-                            <label for="categoryName">ชื่อหมวดหมู่</label>
-                            <input type="text" id="categoryName" name="name" placeholder="เช่น animals, flowers"
-                                required>
-                        </div>
-                        <button type="submit" class="create-btn">
-                            <span>➕</span>
-                            <span>สร้างหมวดหมู่</span>
                         </button>
                     </form>
                 </div>
@@ -125,52 +106,54 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
+    <!-- Main Video Player -->
+    <section class="video-player-section">
         <div class="container">
-            <!-- Category Filter -->
-            <div class="category-filter">
-                <button class="filter-btn active" data-category="all">ทั้งหมด</button>
-                <div id="categoryFilters" class="category-filters">
-                    <!-- Dynamic category buttons will be added here -->
+            <div class="main-player">
+                <div id="videoPlayerWrapper" class="video-wrapper">
+                    <video id="mainVideo" controls poster="images/kids-animation.png">
+                        <source src="" type="video/mp4">
+                        เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+                    </video>
+                    <div id="videoPlaceholder" class="video-placeholder">
+                        <img src="images/kids-animation.png" alt="POFANIMATION">
+                        <div class="placeholder-text">
+                            <span class="play-icon">▶</span>
+                            <p>เลือกวิดีโอจากรายการด้านล่าง</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Gallery Container -->
-            <div id="galleryContainer" class="gallery-container">
-                <!-- Dynamic gallery categories will be added here -->
-                <div class="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>กำลังโหลดภาพ...</p>
+                <div class="video-info">
+                    <h2 id="currentVideoTitle">เลือกวิดีโอเพื่อรับชม</h2>
+                    <p id="currentVideoDesc">คลิกที่วิดีโอด้านล่างเพื่อเริ่มเล่น</p>
                 </div>
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="empty-state hidden">
-                <div class="empty-icon">🖼️</div>
-                <h3>ยังไม่มีภาพในแกลเลอรี</h3>
-                <p>เริ่มอัพโหลดภาพแรกของคุณ!</p>
-                <button class="start-upload-btn" onclick="document.getElementById('adminToggle').click()">
-                    <span>📤</span>
-                    <span>อัพโหลดภาพ</span>
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox hidden">
-        <button class="lightbox-close" aria-label="Close">&times;</button>
-        <button class="lightbox-prev" aria-label="Previous">❮</button>
-        <button class="lightbox-next" aria-label="Next">❯</button>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="">
-            <div class="lightbox-info">
-                <span id="lightboxCategory" class="lightbox-category"></span>
-                <span id="lightboxFilename" class="lightbox-filename"></span>
+    <!-- Video List -->
+    <section class="video-list-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📺 รายการวิดีโอ</h2>
+            </div>
+
+            <div id="videoGrid" class="video-grid">
+                <!-- Videos will be loaded here -->
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>กำลังโหลดวิดีโอ...</p>
+                </div>
+            </div>
+
+            <!-- Under Construction State -->
+            <div id="underConstruction" class="under-construction hidden">
+                <img src="images/under-construction.png" alt="Coming Soon" class="construction-img">
+                <h3>🚧 กำลังเตรียมพร้อม</h3>
+                <p>วิดีโอกำลังอยู่ระหว่างการจัดเตรียม<br>กลับมาเยี่ยมชมใหม่เร็วๆ นี้นะคะ! 💕</p>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -210,7 +193,7 @@
         </form>
     </div>
 
-    <script src="pofimage.js"></script>
+    <script src="pofanimation.js"></script>
     <script src="chat.js"></script>
 </body>
 

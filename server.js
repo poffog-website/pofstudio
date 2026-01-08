@@ -212,6 +212,109 @@ function formatCategoryName(name) {
         .join(' ');
 }
 
+// ========================================
+// POFANIMATION - Video API
+// ========================================
+
+const POFANIMATION_PATH = path.join(__dirname, 'pofanimation');
+
+// Ensure pofanimation folder exists
+if (!fs.existsSync(POFANIMATION_PATH)) {
+    fs.mkdirSync(POFANIMATION_PATH, { recursive: true });
+}
+
+// Configure multer for video upload
+const videoStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, POFANIMATION_PATH);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, 'video-' + uniqueSuffix + ext);
+    }
+});
+
+const videoUpload = multer({
+    storage: videoStorage,
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = /mp4|webm|mov|avi/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = /video/.test(file.mimetype);
+
+        if (extname && mimetype) {
+            return cb(null, true);
+        }
+        cb(new Error('Only video files are allowed!'));
+    },
+    limits: {
+        fileSize: 100 * 1024 * 1024 // 100MB limit
+    }
+});
+
+// Get all videos
+app.get('/api/videos', (req, res) => {
+    try {
+        const videos = fs.readdirSync(POFANIMATION_PATH)
+            .filter(file => /\.(mp4|webm|mov|avi)$/i.test(file))
+            .map(file => {
+                const stats = fs.statSync(path.join(POFANIMATION_PATH, file));
+                return {
+                    filename: file,
+                    title: file.replace(/^video-\d+-\d+/, '').replace(/\.[^.]+$/, '') || file,
+                    url: `/pofanimation/${file}`,
+                    thumbnail: 'images/kids-animation.png',
+                    size: stats.size,
+                    created: stats.birthtime
+                };
+            });
+
+        res.json({ success: true, videos });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Upload video
+app.post('/api/videos/upload', videoUpload.single('video'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, error: 'No video uploaded' });
+        }
+
+        const title = req.body.title || req.file.filename;
+
+        res.json({
+            success: true,
+            message: 'Video uploaded successfully',
+            video: {
+                filename: req.file.filename,
+                title: title,
+                url: `/pofanimation/${req.file.filename}`
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Delete video
+app.delete('/api/videos/:filename', (req, res) => {
+    try {
+        const { filename } = req.params;
+        const filePath = path.join(POFANIMATION_PATH, filename);
+
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({ success: false, error: 'Video not found' });
+        }
+
+        fs.unlinkSync(filePath);
+        res.json({ success: true, message: 'Video deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`
@@ -221,13 +324,18 @@ app.listen(PORT, () => {
 ║  Server running at:                    ║
 ║  http://localhost:${PORT}                  ║
 ║                                        ║
-║  API Endpoints:                        ║
+║  Image API:                            ║
 ║  GET  /api/categories                  ║
 ║  GET  /api/images/:category            ║
 ║  GET  /api/images                      ║
 ║  POST /api/upload                      ║
 ║  POST /api/categories                  ║
 ║  DELETE /api/images/:cat/:filename     ║
+║                                        ║
+║  Video API:                            ║
+║  GET  /api/videos                      ║
+║  POST /api/videos/upload               ║
+║  DELETE /api/videos/:filename          ║
 ╚════════════════════════════════════════╝
     `);
 });
