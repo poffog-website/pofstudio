@@ -78,30 +78,41 @@
         </button>
     </div>
 
-    <!-- Admin Panel -->
+    <!-- Admin Panel (Only for logged-in Admin) -->
     <section id="adminPanel" class="admin-panel hidden">
         <div class="container">
-            <div class="admin-header">
-                <h2>🎵 อัพโหลดเพลง</h2>
-                <button id="closeAdmin" class="close-admin-btn">✕</button>
-            </div>
-            <div class="upload-section">
+            <div class="upload-card">
+                <div class="upload-card-header">
+                    <div class="upload-icon">🎵</div>
+                    <div class="upload-header-text">
+                        <h2>อัพโหลดเพลงใหม่</h2>
+                        <p>เพิ่มเพลงลงในคลังเพลง POFSONG</p>
+                    </div>
+                    <button id="closeAdmin" class="close-admin-btn">✕</button>
+                </div>
                 <form id="uploadForm" class="upload-form">
-                    <div class="form-group">
-                        <label for="audioFile">เลือกไฟล์เพลง (MP3, WAV)</label>
+                    <div class="upload-dropzone" id="dropzone">
+                        <div class="dropzone-icon">📁</div>
+                        <p class="dropzone-text">ลากไฟล์มาวางที่นี่</p>
+                        <p class="dropzone-subtext">หรือคลิกเพื่อเลือกไฟล์</p>
                         <input type="file" id="audioFile" name="audio" accept="audio/mp3,audio/wav,audio/mpeg" required>
+                        <span class="file-name" id="fileName"></span>
                     </div>
                     <div class="form-group">
-                        <label for="songTitle">ชื่อเพลง</label>
-                        <input type="text" id="songTitle" name="title" placeholder="ใส่ชื่อเพลง" required>
+                        <label for="songTitle">
+                            <span class="label-icon">🏷️</span>
+                            ชื่อเพลง
+                        </label>
+                        <input type="text" id="songTitle" name="title" placeholder="ใส่ชื่อเพลง เช่น เพลงสนุกๆ"
+                            required>
                     </div>
-                    <button type="submit" class="upload-btn">
-                        <span>📤</span>
-                        <span>อัพโหลด</span>
+                    <button type="submit" class="upload-submit-btn">
+                        <span class="btn-icon">📤</span>
+                        <span>อัพโหลดเพลง</span>
                     </button>
                 </form>
+                <div id="uploadStatus" class="upload-status"></div>
             </div>
-            <div id="uploadStatus" class="upload-status"></div>
         </div>
     </section>
 

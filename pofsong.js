@@ -72,6 +72,33 @@ function initAdminPanel() {
             adminPanel.classList.add('hidden');
         });
     }
+
+    // Dropzone file name display
+    const fileInput = document.getElementById('audioFile');
+    const fileName = document.getElementById('fileName');
+    const dropzone = document.getElementById('dropzone');
+
+    if (fileInput && fileName) {
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files[0]) {
+                fileName.textContent = '📎 ' + fileInput.files[0].name;
+            }
+        });
+    }
+
+    // Drag & drop styling
+    if (dropzone) {
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dragover');
+        });
+        dropzone.addEventListener('drop', () => {
+            dropzone.classList.remove('dragover');
+        });
+    }
 }
 
 // Upload Form
