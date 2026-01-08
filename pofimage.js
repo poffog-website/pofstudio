@@ -28,8 +28,8 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
 const lightboxCategory = document.getElementById('lightboxCategory');
 const lightboxFilename = document.getElementById('lightboxFilename');
-const loginBtn = document.getElementById('loginBtn');
 const logoutBtn = document.getElementById('logoutBtn');
+const adminContainer = document.getElementById('adminContainer');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,14 +50,14 @@ function checkLoginStatus() {
 
     if (isLoggedIn) {
         // User is logged in - show admin buttons
+        if (adminContainer) adminContainer.style.display = 'flex';
         if (adminToggle) adminToggle.classList.remove('hidden');
         if (logoutBtn) logoutBtn.classList.remove('hidden');
-        if (loginBtn) loginBtn.classList.add('hidden');
     } else {
-        // User is not logged in - show login button
+        // User is not logged in - hide admin container
+        if (adminContainer) adminContainer.style.display = 'none';
         if (adminToggle) adminToggle.classList.add('hidden');
         if (logoutBtn) logoutBtn.classList.add('hidden');
-        if (loginBtn) loginBtn.classList.remove('hidden');
     }
 }
 
@@ -233,9 +233,10 @@ async function loadGallery() {
     } catch (error) {
         console.error('Error loading gallery:', error);
         galleryContainer.innerHTML = `
-            <div class="error-message">
-                <p>ไม่สามารถโหลดภาพได้ กรุณารัน server ก่อน</p>
-                <code>npm install && npm start</code>
+            <div class="under-construction">
+                <img src="images/under-construction.png" alt="Coming Soon" class="construction-img">
+                <h3>🚧 กำลังเตรียมพร้อม</h3>
+                <p>แกลเลอรีกำลังอยู่ระหว่างการจัดเตรียม<br>กลับมาเยี่ยมชมใหม่เร็วๆ นี้นะคะ! 💕</p>
             </div>
         `;
     }
