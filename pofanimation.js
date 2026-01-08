@@ -147,10 +147,38 @@ async function loadVideos() {
             renderVideoGrid();
             underConstruction.classList.add('hidden');
         } else {
-            showUnderConstruction();
+            // Use static videos if no videos from API
+            loadStaticVideos();
         }
     } catch (error) {
         console.error('Error loading videos:', error);
+        // Fallback to static videos
+        loadStaticVideos();
+    }
+}
+
+// Load Static Videos (when server is not available)
+function loadStaticVideos() {
+    videos = [
+        {
+            filename: 'gus_dance.mp4',
+            title: 'GUS Dance',
+            url: 'pofanimation/gus_dance.mp4',
+            thumbnail: 'images/kids-animation.png'
+        }
+    ];
+
+    if (videos.length > 0) {
+        renderVideoGrid();
+        underConstruction.classList.add('hidden');
+
+        // Auto-load first video
+        mainVideo.src = videos[0].url;
+        mainVideo.classList.add('playing');
+        videoPlaceholder.classList.add('hidden');
+        currentVideoTitle.textContent = videos[0].title;
+        currentVideoDesc.textContent = `🎬 ${videos[0].filename}`;
+    } else {
         showUnderConstruction();
     }
 }

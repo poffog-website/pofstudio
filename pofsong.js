@@ -144,10 +144,36 @@ async function loadSongs() {
             underConstruction.classList.add('hidden');
             songList.style.display = 'flex';
         } else {
-            showUnderConstruction();
+            // Use static songs if no songs from API
+            loadStaticSongs();
         }
     } catch (error) {
         console.error('Error loading songs:', error);
+        // Fallback to static songs
+        loadStaticSongs();
+    }
+}
+
+// Load Static Songs (when server is not available)
+function loadStaticSongs() {
+    songs = [
+        {
+            filename: 'GUS_Open_Song_V01.mp3',
+            title: 'GUS Open Song',
+            url: 'pofsong/GUS_Open_Song_V01.mp3'
+        }
+    ];
+
+    if (songs.length > 0) {
+        renderSongList();
+        underConstruction.classList.add('hidden');
+        songList.style.display = 'flex';
+
+        // Auto-load first song
+        audioPlayer.src = songs[0].url;
+        currentSongTitle.textContent = songs[0].title;
+        currentSongArtist.textContent = 'POFSTUDIO';
+    } else {
         showUnderConstruction();
     }
 }
