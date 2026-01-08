@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="POFSTUDIO - Portfolio แสดงผลงานภาพ อนิเมชั่น เพลง และงานสอนสำหรับเด็ก">
+    <title>POFSTUDIO | Creative Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">หน้าแรก</a></li>
+                <li><a href="#categories" class="nav-link">ผลงาน</a></li>
+                <li><a href="#about" class="nav-link">เกี่ยวกับ</a></li>
+                <li><a href="#contact" class="nav-link">ติดต่อ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ Creative Studio</div>
+            <h1 class="hero-title">
+                <span class="title-main">POF</span><span class="title-accent">STUDIO</span>
+            </h1>
+            <p class="hero-subtitle">สตูดิโอสร้างสรรค์ผลงานสำหรับเด็ก</p>
+            <p class="hero-description">
+                ภาพประกอบน่ารัก อนิเมชั่นสนุก เพลงแสนหวาน และสื่อการเรียนรู้สำหรับเด็กๆ
+            </p>
+            <a href="#categories" class="hero-btn">
+                <span>ดูผลงาน</span>
+                <svg class="btn-arrow" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                </svg>
+            </a>
+        </div>
+        <div class="hero-illustration">
+            <div class="floating-element el-1">🎨</div>
+            <div class="floating-element el-2">🎬</div>
+            <div class="floating-element el-3">🎵</div>
+            <div class="floating-element el-4">📚</div>
+            <div class="floating-element el-5">⭐</div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">ผลงานของเรา</span>
+                <h2 class="section-title">หมวดหมู่ผลงาน</h2>
+                <p class="section-description">เลือกดูผลงานในแต่ละหมวดหมู่ที่คุณสนใจ</p>
+            </div>
+
+            <div class="categories-grid">
+                <!-- POFIMAGE -->
+                <article class="category-card card-image">
+                    <div class="card-icon">
+                        <span class="icon-emoji">🖼️</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">IMAGE</span>
+                        </h3>
+                        <p class="card-description">ภาพประกอบและงานกราฟิกน่ารัก สำหรับหนังสือ สื่อการเรียนรู้ และอื่นๆ
+                        </p>
+                        <a href="pofimage.html" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+
+                <!-- POFANIMATION -->
+                <article class="category-card card-animation">
+                    <div class="card-icon">
+                        <span class="icon-emoji">🎬</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">ANIMATION</span>
+                        </h3>
+                        <p class="card-description">อนิเมชั่นสั้นสำหรับเด็ก วิดีโอการ์ตูน และ motion graphics สนุกๆ</p>
+                        <a href="#" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+
+                <!-- POFSONG -->
+                <article class="category-card card-song">
+                    <div class="card-icon">
+                        <span class="icon-emoji">🎵</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">SONG</span>
+                        </h3>
+                        <p class="card-description">เพลงเด็กน่ารัก เพลงประกอบ และดนตรีสำหรับสื่อการเรียนรู้</p>
+                        <a href="#" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+
+                <!-- POFFRIEND -->
+                <article class="category-card card-friend">
+                    <div class="card-icon">
+                        <span class="icon-emoji">🧒</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">FRIEND</span>
+                        </h3>
+                        <p class="card-description">สื่อการเรียนรู้และกิจกรรมสร้างสรรค์สำหรับเด็ก
+                            ทั้งวิชาการและทักษะชีวิต</p>
+                        <a href="#" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+
+                <!-- POFSHOP -->
+                <article class="category-card card-shop">
+                    <div class="card-icon">
+                        <span class="icon-emoji">🛒</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">SHOP</span>
+                        </h3>
+                        <p class="card-description">สินค้าและผลิตภัณฑ์น่ารัก สติกเกอร์ โปสเตอร์ และของขวัญสำหรับเด็ก</p>
+                        <a href="#" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+
+                <!-- POFMORE -->
+                <article class="category-card card-more">
+                    <div class="card-icon">
+                        <span class="icon-emoji">✨</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <span class="pof">POF</span><span class="name">MORE</span>
+                        </h3>
+                        <p class="card-description">ผลงานสร้างสรรค์อื่นๆ และโปรเจกต์พิเศษที่น่าสนใจ</p>
+                        <a href="#" class="card-link">
+                            <span>ดูผลงาน</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card-decoration"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="section-badge">เกี่ยวกับเรา</span>
+                    <h2 class="about-title">สร้างสรรค์ด้วยใจ<br>เพื่อเด็กๆ</h2>
+                    <p class="about-description">
+                        POFSTUDIO คือสตูดิโอที่มุ่งมั่นสร้างสรรค์สื่อและผลงานที่เหมาะสำหรับเด็ก
+                        ไม่ว่าจะเป็นภาพประกอบน่ารัก อนิเมชั่นสนุก เพลงไพเราะ หรือสื่อการเรียนรู้ที่เข้าใจง่าย
+                        เราเชื่อว่าการเรียนรู้ที่ดีควรเริ่มต้นจากความสนุก
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">ผลงาน</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">โปรเจกต์</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">ปีประสบการณ์</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-card">
+                        <div class="visual-emoji">🌈</div>
+                        <span>Colorful</span>
+                    </div>
+                    <div class="visual-card">
+                        <div class="visual-emoji">💝</div>
+                        <span>Lovely</span>
+                    </div>
+                    <div class="visual-card">
+                        <div class="visual-emoji">🎯</div>
+                        <span>Creative</span>
+                    </div>
+                    <div class="visual-card">
+                        <div class="visual-emoji">🌟</div>
+                        <span>Quality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <span class="section-badge">ติดต่อเรา</span>
+                    <h2 class="contact-title">มาสร้างสรรค์<br>ผลงานด้วยกัน!</h2>
+                    <p class="contact-description">
+                        สนใจร่วมงานหรือมีโปรเจกต์อยากให้เราช่วย? กรอกฟอร์มหรือติดต่อผ่านช่องทางด้านล่างได้เลย!
+                    </p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>อีเมล</strong>
+                                <a href="mailto:poffog@gmail.com">poffog@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">💬</span>
+                            <div>
+                                <strong>แชท</strong>
+                                <span>พูดคุยผ่าน Chat AI ได้เลย!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61583931062043" target="_blank"
+                            class="social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/@that.isnotlove" target="_blank" class="social-link"
+                            aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@PofStudio" target="_blank" class="social-link"
+                            aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@princeofhug" target="_blank" class="social-link"
+                            aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">👤 ชื่อของคุณ <span class="required">*</span></label>
+                                <input type="text" id="contactName" name="name" placeholder="ใส่ชื่อของคุณ" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">📧 อีเมล <span class="required">*</span></label>
+                                <input type="email" id="contactEmail" name="email" placeholder="email@example.com"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">📝 หัวข้อ <span class="required">*</span></label>
+                            <input type="text" id="contactSubject" name="subject" placeholder="เรื่องที่ต้องการติดต่อ"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">💬 ข้อความ <span class="required">*</span></label>
+                            <textarea id="contactMessage" name="message" rows="5"
+                                placeholder="รายละเอียดที่ต้องการแจ้ง..." required></textarea>
+                        </div>
+
+                        <div id="formStatus" class="form-status"></div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>📤</span>
+                            <span>ส่งข้อความ</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">POF</span><span class="logo-accent">STUDIO</span>
+                </div>
+                <p class="footer-text">สร้างสรรค์ผลงานน่ารักสำหรับเด็กๆ</p>
+                <p class="footer-copyright">© 2026 POFSTUDIO. All rights reserved.</p>
+                <a href="login.html" class="footer-admin-link">
+                    <span>🔐</span>
+                    <span>Admin</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Chat">
+        💬
+    </button>
+
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <div class="chat-avatar">😊</div>
+            <div class="chat-info">
+                <h3>POF Assistant</h3>
+                <p>พร้อมช่วยเหลือคุณค่ะ</p>
+            </div>
+            <button id="chatClose" class="chat-close">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm" class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="พิมพ์ข้อความ..." autocomplete="off">
+            <button type="submit" class="chat-send">➤</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat.js"></script>
+</body>
+
+</html>
